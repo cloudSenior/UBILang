@@ -117,6 +117,9 @@ void Lexer::tokenizeOperator()
     case ')':
         result = TokenType::RPAREN;
         break;
+    case '=':
+        result = TokenType::EQ;
+        break;
     }
 
     addToken(result);

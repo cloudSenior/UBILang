@@ -1,10 +1,10 @@
 #pragma once
 #include "defs.hh"
 
-class {
+class Variable {
 
 private:
-    const table<str, double> constants {
+    table<str, double> variables {
         { "PI", 3.1415926535 },
         { "GOLDEN_RATTION", 1.618 },
         { "E", 2.7182818284 }
@@ -13,7 +13,7 @@ private:
 public:
     bool isExists(str key)
     {
-        if (constants.find(key) != constants.end())
+        if (variables.find(key) != variables.end())
             return true;
         return false;
     }
@@ -23,6 +23,11 @@ public:
         if (!isExists(key))
             return 0;
 
-       return constants.at(key);
+       return variables.at(key);
     }
-} Constant;
+
+    void set(str name, double value)
+    {
+       variables.emplace(name, value);
+    }
+};

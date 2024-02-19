@@ -1,26 +1,25 @@
 #pragma once
 
 #include "Expression.hh"
-#include "Constant.hh"
+#include "Variable.hh"
 #include "defs.hh"
 
 
-class ConstExpression : public Expression
-{
+class VariableExpression : public Expression {
 public:
 
-    ConstExpression(str name)
+    VariableExpression(str name)
     {
         this->name = name;
     }
 
     double eval() override
     {
-        if (!Constant.isExists(name)) 
+        if (!Variable().isExists(name)) 
         {
             throw "Is not const";
         }
-        return Constant.get(name);
+        return Variable().get(name);
     }
 
 private:

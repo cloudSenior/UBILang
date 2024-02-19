@@ -10,7 +10,7 @@ public:
     vec<Token> tokenize();
 
 private:
-    const str OPERATION_CHARS { "+-/*()" };
+    const str OPERATION_CHARS { "+-/*()=" };
     
     vec<Token> tokens;
     str input;

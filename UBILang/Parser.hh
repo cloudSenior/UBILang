@@ -9,7 +9,10 @@
 #include "NumberExpression.hh"
 #include "BinaryExpression.hh"
 #include "UnaryExpression.hh"
-#include "ConstExpression.hh"
+#include "VariableExpression.hh"
+
+#include "Assigment.hpp"
+#include "Statement.hh"
 
 
 class Parser
@@ -18,12 +21,16 @@ public:
 
     Parser(vec<Token> tokens);
 
-    vec<std::unique_ptr<Expression>> parse();
+    vec<std::unique_ptr<Statement>> parse();
 
 private:
     vec<Token> tokens;
     uint32 pos, size;
     Token EndOfFile = Token(TokenType::EXITSOPENFILE, "");
+
+    std::unique_ptr<Statement> statement();
+
+    std::unique_ptr<Statement> assigmentStatement();
 
     std::unique_ptr<Expression> expression();
 
@@ -34,6 +41,8 @@ private:
     std::unique_ptr<Expression> unary();
 
     std::unique_ptr<Expression> primary();
+
+    Token consume(TokenType type);
 
     bool match(TokenType type);
 

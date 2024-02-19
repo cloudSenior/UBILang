@@ -10,7 +10,7 @@ int main(int argc, char const* argv[])
     using namespace std;
 
     
-    str code = "PI + PI";
+    str code = "word = 2 + 2";
     Lexer A(code);
 
 
@@ -18,11 +18,11 @@ int main(int argc, char const* argv[])
     for (auto item : A.tokenize())
         cout << str(item.getText()) << endl;
 
-
     auto expressions = Parser(A.tokenize()).parse();
+    
+    for (int32 i = 0; i < expressions.size(); ++i)
+        expressions[i]->execute();
 
-    for (int16 i = 0; i < expressions.size(); ++i)
-        cout << expressions[i]->eval() << endl;
 
     return EXIT_SUCCESS;
 }

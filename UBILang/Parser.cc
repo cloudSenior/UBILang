@@ -2,6 +2,7 @@
 
 
 #include "Parser.hh"
+#include "Statement.hh"
 
 
 Parser::Parser(vec<Token> tokens)
@@ -11,17 +12,34 @@ Parser::Parser(vec<Token> tokens)
     this->pos = 0;
 }
 
-vec<std::unique_ptr<Expression>> Parser::parse()
+vec<std::unique_ptr<Statement>> Parser::parse()
 {
-    vec<std::unique_ptr<Expression>> result {};
+    vec<std::unique_ptr<Statement>> result {};
 
     while (!match(TokenType::EXITSOPENFILE)) {
-        result.push_back(std::move(expression()));
+        result.push_back(std::move(statement()));
     }
 
     return result;
 }
 
+std::unique_ptr<Statement> Parser::statement()
+{
+    return assigmentStatement();
+}
+
+std::unique_ptr<Statement> Parser::assigmentStatement()
+{
+    Token current = get(0);
+
+    if (match(TokenType::WORD) && get(0).getType() == TokenType::EQ)
+    {
+        str variable = current.getText();
+        consume(TokenType::EQ);
+        return std::make_unique<Assigment>(variable, expression());
+    }
+
+}
 
 
 std::unique_ptr<Expression> Parser::expression()
@@ -31,7 +49,6 @@ std::unique_ptr<Expression> Parser::expression()
 
 std::unique_ptr<Expression> Parser::addtive()
 {
-
     std::unique_ptr<Expression> Multi = std::move(multi());
 
     while (true) {
@@ -99,7 +116,7 @@ std::unique_ptr<Expression> Parser::primary()
 
     if (match(TokenType::WORD))
     {
-        return std::make_unique<ConstExpression>(current.getText());
+        return std::make_unique<VariableExpression>(current.getText());
     }
 
     if (match(TokenType::HEX_NUMBER)) {
@@ -107,11 +124,24 @@ std::unique_ptr<Expression> Parser::primary()
     }
 }
 
+
+Token Parser::consume(TokenType type)
+{
+    Token current = get(0);
+    if (type != current.getType()) {
+        throw "Error";
+    }
+    this->pos++;
+    return current;
+}
+
+
 bool Parser::match(TokenType type)
 {
     Token current = get(0);
-    if (type != current.getType())
+    if (type != current.getType()) {
         return false;
+    }
     pos++;
     return true;
 }

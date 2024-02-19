@@ -139,14 +139,16 @@
     <ClCompile Include="UnaryExpression.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assigment.hpp" />
     <ClInclude Include="BinaryExpression.hh" />
-    <ClInclude Include="Constant.hh" />
-    <ClInclude Include="ConstExpression.hh" />
+    <ClInclude Include="Variable.hh" />
+    <ClInclude Include="VariableExpression.hh" />
     <ClInclude Include="defs.hh" />
     <ClInclude Include="Expression.hh" />
     <ClInclude Include="Lexer.hh" />
     <ClInclude Include="NumberExpression.hh" />
     <ClInclude Include="Parser.hh" />
+    <ClInclude Include="Statement.hh" />
     <ClInclude Include="string.hh" />
     <ClInclude Include="table.hh" />
     <ClInclude Include="Token.hh" />

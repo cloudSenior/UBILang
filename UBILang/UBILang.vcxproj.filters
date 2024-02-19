@@ -40,6 +40,15 @@
     <Filter Include="Файлы заголовков\interpreter\expression\unary">
       <UniqueIdentifier>{6e7b299d-89f9-4e0d-8e5d-218cebf4e33e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\interpreter\statement">
+      <UniqueIdentifier>{79a71544-b51f-4b35-ba24-730938050b39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\interpreter\statement\assigment">
+      <UniqueIdentifier>{8053472f-1d1c-4827-92a1-121e649c69b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\interpreter\variable">
+      <UniqueIdentifier>{2d36fbb0-0293-448c-b867-a427d04ea906}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -100,6 +109,18 @@
     </ClInclude>
     <ClInclude Include="UnaryExpression.hh">
       <Filter>Файлы заголовков\interpreter\expression\unary</Filter>
+    </ClInclude>
+    <ClInclude Include="Statement.hh">
+      <Filter>Файлы заголовков\interpreter\statement</Filter>
+    </ClInclude>
+    <ClInclude Include="Assigment.hpp">
+      <Filter>Файлы заголовков\interpreter\statement\assigment</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableExpression.hh">
+      <Filter>Файлы заголовков\interpreter\variable</Filter>
+    </ClInclude>
+    <ClInclude Include="Variable.hh">
+      <Filter>Файлы заголовков\interpreter\variable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

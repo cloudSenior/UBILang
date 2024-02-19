@@ -12,6 +12,7 @@ enum class TokenType {
     RPAREN, // )
     
     WORD,
+    EQ,
 
     EXITSOPENFILE
 };

@@ -10,8 +10,10 @@ int main(int argc, char const* argv[])
     using namespace std;
 
     
-    str code = "3+3*3";
+    str code = "PI + PI";
     Lexer A(code);
+
+
 
     for (auto item : A.tokenize())
         cout << str(item.getText()) << endl;

@@ -16,11 +16,11 @@ vec<Token> Lexer::tokenize()
 
         char current = peek(NULL);
 
-        if (std::isdigit(current)) {
-
+        if (std::isdigit(current)) 
+        {
             tokenizeNumber();
-
-        } else if (std::isalpha(current))
+        } 
+        else if (std::isalpha(current))
         {
             tokenizeWord();
         } 
@@ -45,11 +45,12 @@ void Lexer::tokenizeWord()
     str buffer;
     char current = peek(0);
 
-    while (std::isdigit(current)) {
+    while (!std::isdigit(current)) {
 
-       if (!std::isdigit(current)  && (current != '_' && current != '$')) {
+       if (!(std::isdigit(current) || std::isalpha(current)) && (current != '_') && (current != '$'))
+       {
             break;
-        }
+       }
 
         buffer += current;
         current = next();
@@ -86,7 +87,7 @@ void Lexer::tokenizeHexNumber()
     str buffer;
     char current = peek(0);
 
-    while (std::isdigit(current) || (str("abcdf").find(std::tolower(current))) != 1) {
+    while (std::isdigit(current)) {
         buffer += current;
         current = next();
     }

@@ -130,14 +130,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryExpression.cc" />
     <ClCompile Include="Lexer.cc" />
+    <ClCompile Include="NumberExpression.cc" />
+    <ClCompile Include="Parser.cc" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Token.cc" />
+    <ClCompile Include="UnaryExpression.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryExpression.hh" />
+    <ClInclude Include="Constant.hh" />
+    <ClInclude Include="ConstExpression.hh" />
     <ClInclude Include="defs.hh" />
-    <ClInclude Include="eval.hh" />
     <ClInclude Include="Expression.hh" />
     <ClInclude Include="Lexer.hh" />
     <ClInclude Include="NumberExpression.hh" />

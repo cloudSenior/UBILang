@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Expression.hh"
+#include <memory>
 
 
 
@@ -8,28 +9,11 @@ class UnaryExpression : public Expression
 {
 public:
 
-    UnaryExpression(char operation, std::unique_ptr<Expression> expr)
-    {
-        this->expr = expr.get();
-        this->operation = operation;
-    }
+    UnaryExpression(char operation, std::unique_ptr<Expression> expr);
 
-    double eval() override
-    {
-        switch (operation) {
-
-        case '-':
-            return -expr->eval();
-            
-        case '+':
-        default:
-            return expr->eval();
-            
-        }
-    }
-
+    double eval() override;
 
 private:
-    Expression* expr;
+    std::unique_ptr<Expression> expr;
     char operation;
 };

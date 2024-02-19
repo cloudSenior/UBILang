@@ -4,8 +4,7 @@
 
 
 
-namespace util
-{
+namespace util {
 
 class {
 public:
@@ -22,7 +21,6 @@ public:
         return false;
     }
 
-} Table
-
+} Table;
 
 }

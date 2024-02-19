@@ -2,17 +2,12 @@
 
 #include "Token.hh"
 
-
-
-
 class Lexer {
 public:
 
     Lexer(str input);
-    
 
     vec<Token> tokenize();
-
 
 private:
     const str OPERATION_CHARS { "+-/*()" };
@@ -21,9 +16,6 @@ private:
     str input;
 
     uint32 pos, length;
-
-
-   
 
     void tokenizeNumber();
 

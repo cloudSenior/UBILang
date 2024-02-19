@@ -6,15 +6,10 @@ class NumberExpression : public Expression
 {
 public:
 
-    NumberExpression(double value)
-    {
-        this->value = value;
-    }
+    NumberExpression(double value);
 
-    double eval() override
-    {
-        return this->value;
-    }
+    double eval() override;
+
 
 private:
     double value;

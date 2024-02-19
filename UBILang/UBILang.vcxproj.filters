@@ -51,6 +51,18 @@
     <ClCompile Include="Token.cc">
       <Filter>Файлы заголовков\interpreter\token</Filter>
     </ClCompile>
+    <ClCompile Include="NumberExpression.cc">
+      <Filter>Файлы заголовков\interpreter\expression\number</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryExpression.cc">
+      <Filter>Файлы заголовков\interpreter\expression\binary</Filter>
+    </ClCompile>
+    <ClCompile Include="UnaryExpression.cc">
+      <Filter>Файлы заголовков\interpreter\expression\unary</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser.cc">
+      <Filter>Файлы заголовков\interpreter\parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lexer.hh">
@@ -79,9 +91,6 @@
     </ClInclude>
     <ClInclude Include="Expression.hh">
       <Filter>Файлы заголовков\interpreter\expression</Filter>
-    </ClInclude>
-    <ClInclude Include="eval.hh">
-      <Filter>Файлы заголовков\util</Filter>
     </ClInclude>
     <ClInclude Include="NumberExpression.hh">
       <Filter>Файлы заголовков\interpreter\expression\number</Filter>

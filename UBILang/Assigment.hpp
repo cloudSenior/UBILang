@@ -8,12 +8,13 @@
 #include "Expression.hh"
 #include "VariableExpression.hh"
 
+#include "Value.hh"
 
 class Assigment : public Statement
 {
 public:
 
-    Assigment(str variable, std::unique_ptr<Expression> expression)
+    Assigment(str variable, std::shared_ptr<Expression> expression)
     {
         this->variable = variable;
         this->expression = std::move(expression);
@@ -21,11 +22,10 @@ public:
 
     void execute() override
     {
-        double result = expression->eval();
-        Variable().set(variable, result);
+        Variable().set(variable, expression->eval().get());
     }
 
 private:
     str variable;
-    std::unique_ptr<Expression> expression;
+    std::shared_ptr<Expression> expression;
 };

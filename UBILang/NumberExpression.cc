@@ -9,7 +9,8 @@ NumberExpression::NumberExpression(double value)
     this->value = value;
 }
 
-double NumberExpression::eval() 
+
+std::shared_ptr<Value> NumberExpression::eval()
 {
-    return this->value;
+    return std::make_shared<NumberValue>(value);
 }

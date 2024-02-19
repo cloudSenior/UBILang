@@ -10,9 +10,13 @@ enum class TokenType {
 
     LPAREN, // (
     RPAREN, // )
+
     
     WORD,
     EQ,
+
+    //keywords
+    PRINT,
 
     EXITSOPENFILE
 };

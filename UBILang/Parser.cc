@@ -3,6 +3,7 @@
 
 #include "Parser.hh"
 #include "Statement.hh"
+#include "PrintStatment.hh"
 
 
 Parser::Parser(vec<Token> tokens)
@@ -12,9 +13,9 @@ Parser::Parser(vec<Token> tokens)
     this->pos = 0;
 }
 
-vec<std::unique_ptr<Statement>> Parser::parse()
+vec<std::shared_ptr<Statement>> Parser::parse()
 {
-    vec<std::unique_ptr<Statement>> result {};
+    vec<std::shared_ptr<Statement>> result {};
 
     while (!match(TokenType::EXITSOPENFILE)) {
         result.push_back(std::move(statement()));
@@ -23,12 +24,20 @@ vec<std::unique_ptr<Statement>> Parser::parse()
     return result;
 }
 
-std::unique_ptr<Statement> Parser::statement()
+std::shared_ptr<Statement> Parser::statement()
 {
-    return assigmentStatement();
+    if (match(TokenType::PRINT))
+    {
+        auto copy = std::move(expression());
+        return std::make_shared<PrintStatment>(copy);
+    } 
+    else 
+    {
+        return assigmentStatement();
+    }
 }
 
-std::unique_ptr<Statement> Parser::assigmentStatement()
+std::shared_ptr<Statement> Parser::assigmentStatement()
 {
     Token current = get(0);
 
@@ -36,28 +45,27 @@ std::unique_ptr<Statement> Parser::assigmentStatement()
     {
         str variable = current.getText();
         consume(TokenType::EQ);
-        return std::make_unique<Assigment>(variable, expression());
+        auto copy = std::move(expression());
+        return std::make_shared<Assigment>(variable, copy);
     }
 
 }
 
-
-std::unique_ptr<Expression> Parser::expression()
+std::shared_ptr<Expression> Parser::expression()
 {
     return addtive();
 }
 
-std::unique_ptr<Expression> Parser::addtive()
+std::shared_ptr<Expression> Parser::addtive()
 {
-    std::unique_ptr<Expression> Multi = std::move(multi());
-
+    std::shared_ptr<Expression> Multi = std::move(multi());
     while (true) {
         if (match(TokenType::MINUS)) {
-            Multi = std::make_unique<BinaryExpression>('-', std::move(Multi), multi());
+            Multi = std::make_shared<BinaryExpression>('-', std::move(Multi), multi());
             continue;
         }
         if (match(TokenType::PLUS)) {
-            Multi = std::make_unique<BinaryExpression>('+', std::move(Multi), multi());
+            Multi = std::make_shared<BinaryExpression>('+', std::move(Multi), multi());
             continue;
         }
         break;
@@ -66,18 +74,18 @@ std::unique_ptr<Expression> Parser::addtive()
     return Multi;
 }
 
-std::unique_ptr<Expression> Parser::multi()
+std::shared_ptr<Expression> Parser::multi()
 {
-    std::unique_ptr<Expression> Unary = std::move(unary());
+    std::shared_ptr<Expression> Unary = std::move(unary());
 
     while (true) {
         if (match(TokenType::MULTI)) {
-            Unary = std::make_unique<BinaryExpression>('*', std::move(Unary), unary());
+            Unary = std::make_shared<BinaryExpression>('*', std::move(Unary), unary());
 
             continue;
         }
         if (match(TokenType::DELITE)) {
-            Unary = std::make_unique<BinaryExpression>('/', std::move(Unary), unary());
+            Unary = std::make_shared<BinaryExpression>('/', std::move(Unary), unary());
 
             continue;
         }
@@ -87,11 +95,11 @@ std::unique_ptr<Expression> Parser::multi()
     return Unary;
 }
 
-std::unique_ptr<Expression> Parser::unary()
+std::shared_ptr<Expression> Parser::unary()
 {
     if (match(TokenType::MINUS)) {
 
-        return std::make_unique<UnaryExpression>('-', primary());
+        return std::make_shared<UnaryExpression>('-', primary());
     }
     if (match(TokenType::PLUS)) {
         return primary();
@@ -100,27 +108,27 @@ std::unique_ptr<Expression> Parser::unary()
     return primary();
 }
 
-std::unique_ptr<Expression> Parser::primary()
+std::shared_ptr<Expression> Parser::primary()
 {
     Token current = get(0);
 
     if (match(TokenType::NUMBER)) {
-        return std::make_unique<NumberExpression>(std::stod(current.getText()));
+        return std::make_shared<NumberExpression>(std::stod(current.getText()));
     }
 
     if (match(TokenType::LPAREN)) {
-        std::unique_ptr<Expression> result = std::move(expression());
+        std::shared_ptr<Expression> result = std::move(expression());
         match(TokenType::RPAREN);
         return result;
     }
 
     if (match(TokenType::WORD))
     {
-        return std::make_unique<VariableExpression>(current.getText());
+        return std::make_shared<VariableExpression>(current.getText());
     }
 
     if (match(TokenType::HEX_NUMBER)) {
-        return std::make_unique<NumberExpression>(std::stol(current.getText()));
+        return std::make_shared<NumberExpression>(std::stol(current.getText()));
     }
 }
 

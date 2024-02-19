@@ -2,6 +2,7 @@
 
 #include "Expression.hh"
 #include "Variable.hh"
+#include "Value.hh"
 #include "defs.hh"
 
 
@@ -13,13 +14,16 @@ public:
         this->name = name;
     }
 
-    double eval() override
+    std::shared_ptr<Value> eval() override
     {
-        if (!Variable().isExists(name)) 
+        if (Variable().isExists(name)) 
         {
-            throw "Is not const";
+            return std::shared_ptr<Value>(Variable().get(name));
+        } 
+        else 
+        {
+            throw "No registation variable";
         }
-        return Variable().get(name);
     }
 
 private:

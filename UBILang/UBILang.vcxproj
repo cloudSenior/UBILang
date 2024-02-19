@@ -141,6 +141,10 @@
   <ItemGroup>
     <ClInclude Include="Assigment.hpp" />
     <ClInclude Include="BinaryExpression.hh" />
+    <ClInclude Include="NumberValue.hh" />
+    <ClInclude Include="PrintStatment.hh" />
+    <ClInclude Include="StringValue.hh" />
+    <ClInclude Include="Value.hh" />
     <ClInclude Include="Variable.hh" />
     <ClInclude Include="VariableExpression.hh" />
     <ClInclude Include="defs.hh" />
@@ -155,6 +159,9 @@
     <ClInclude Include="TokenType.hh" />
     <ClInclude Include="UnaryExpression.hh" />
     <ClInclude Include="vec.hh" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="program.ubi" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,33 +1,47 @@
 #pragma once
 #include "defs.hh"
 
+#include "Value.hh"
+#include "NumberValue.hh"
+#include "StringValue.hh"
+
+#include <map>
+
+static std::map<str, Value*> variables {
+    { "PI",             new NumberValue (3.1415926535) },
+    { "GOLDEN_RATTION", new NumberValue (1.618) },
+    { "E",              new NumberValue (2.7182818284) }
+};
+
+
+
+
 class Variable {
-
-private:
-    table<str, double> variables {
-        { "PI", 3.1415926535 },
-        { "GOLDEN_RATTION", 1.618 },
-        { "E", 2.7182818284 }
-    };
-
 public:
     bool isExists(str key)
     {
-        if (variables.find(key) != variables.end())
-            return true;
+        for (auto iter = variables.begin(); iter != variables.end(); ++iter)
+            if (iter->first != key)
+                return true;
         return false;
     }
 
-    double get(str key)
+    Value* get(str key)
     {
-        if (!isExists(key))
-            return 0;
+        if (!isExists(key)) 
+        {
+            throw "Variable not on regidit";
+        }
+        else
+        {
+            return variables.at(key);
+        }
 
-       return variables.at(key);
+        return nullptr;
     }
 
-    void set(str name, double value)
+    void set(str name, Value* value)
     {
-       variables.emplace(name, value);
+        variables[name] = value;
     }
 };

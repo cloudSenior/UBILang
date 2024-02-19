@@ -45,7 +45,7 @@ void Lexer::tokenizeWord()
     str buffer;
     char current = peek(0);
 
-    while (!std::isdigit(current)) {
+    while (true) {
 
        if (!(std::isdigit(current) || std::isalpha(current)) && (current != '_') && (current != '$'))
        {
@@ -55,7 +55,14 @@ void Lexer::tokenizeWord()
         buffer += current;
         current = next();
     }
-    addToken(TokenType::WORD, buffer);
+
+    if (buffer == "log") 
+    {
+        addToken(TokenType::PRINT);
+    } else 
+    {
+        addToken(TokenType::WORD, buffer);
+    }
 }
 
 void Lexer::tokenizeNumber()
@@ -63,7 +70,7 @@ void Lexer::tokenizeNumber()
     str buffer;
     char current = peek(0);
 
-    while (std::isdigit(current)) {
+    while (true) {
         if (current == '.')
         {
             if (buffer.find('.') != -1)

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include "Lexer.hh"
 #include "parser.hh"
@@ -9,20 +10,21 @@ int main(int argc, char const* argv[])
 { 
     using namespace std;
 
+    str buffer;
+    ifstream file("program.ubi");
     
-    str code = "word = 2 + 2";
-    Lexer A(code);
+    while (getline(file, buffer)) {
+        str code = buffer;
 
+        Lexer lexer(code);
 
+        vec<Token> tokens = lexer.tokenize();
+        vec<shared_ptr<Statement>> expressions = move(Parser(tokens).parse());
 
-    for (auto item : A.tokenize())
-        cout << str(item.getText()) << endl;
+        for (auto& item: expressions)
+            item->execute();
+    }
 
-    auto expressions = Parser(A.tokenize()).parse();
-    
-    for (int32 i = 0; i < expressions.size(); ++i)
-        expressions[i]->execute();
-
-
+    file.close();
     return EXIT_SUCCESS;
 }

@@ -49,6 +49,21 @@
     <Filter Include="Файлы заголовков\interpreter\variable">
       <UniqueIdentifier>{2d36fbb0-0293-448c-b867-a427d04ea906}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\program">
+      <UniqueIdentifier>{891c17ec-656d-474b-b945-8f74c46333a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\interpreter\statement\print">
+      <UniqueIdentifier>{0b6a0717-cf2b-4d39-b64d-bdd0feca6ae9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\interpreter\variable\types">
+      <UniqueIdentifier>{edde0645-b828-4644-b076-b36d14f690c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\interpreter\variable\types\number">
+      <UniqueIdentifier>{5f051eaa-e0e6-47d1-8b21-b0384b42715f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\interpreter\variable\types\string">
+      <UniqueIdentifier>{5f646308-c730-460f-8aca-34cfb182e823}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -98,9 +113,6 @@
     <ClInclude Include="Parser.hh">
       <Filter>Файлы заголовков\interpreter\parser</Filter>
     </ClInclude>
-    <ClInclude Include="Expression.hh">
-      <Filter>Файлы заголовков\interpreter\expression</Filter>
-    </ClInclude>
     <ClInclude Include="NumberExpression.hh">
       <Filter>Файлы заголовков\interpreter\expression\number</Filter>
     </ClInclude>
@@ -122,5 +134,25 @@
     <ClInclude Include="Variable.hh">
       <Filter>Файлы заголовков\interpreter\variable</Filter>
     </ClInclude>
+    <ClInclude Include="PrintStatment.hh">
+      <Filter>Файлы заголовков\interpreter\statement\print</Filter>
+    </ClInclude>
+    <ClInclude Include="Value.hh">
+      <Filter>Файлы заголовков\interpreter\variable\types</Filter>
+    </ClInclude>
+    <ClInclude Include="NumberValue.hh">
+      <Filter>Файлы заголовков\interpreter\variable\types\number</Filter>
+    </ClInclude>
+    <ClInclude Include="StringValue.hh">
+      <Filter>Файлы заголовков\interpreter\variable\types\string</Filter>
+    </ClInclude>
+    <ClInclude Include="Expression.hh">
+      <Filter>Файлы заголовков\interpreter\expression</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="program.ubi">
+      <Filter>Файлы заголовков\program</Filter>
+    </None>
   </ItemGroup>
 </Project>

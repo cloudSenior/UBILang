@@ -7,13 +7,13 @@
 class BinaryExpression : public Expression {
 public:
 
-    BinaryExpression(char operation, std::unique_ptr<Expression> expr1, std::unique_ptr<Expression> expr2);
+    BinaryExpression(char operation, std::shared_ptr<Expression> expr1, std::shared_ptr<Expression> expr2);
 
-    double eval() override;
+    std::shared_ptr<Value> eval() override;
     
 private:
-    std::unique_ptr<Expression> expr1;
-    std::unique_ptr<Expression> expr2;
+    std::shared_ptr<Expression> expr1;
+    std::shared_ptr<Expression> expr2;
 
     char operation;
 };

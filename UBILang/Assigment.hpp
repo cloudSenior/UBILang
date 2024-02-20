@@ -14,7 +14,7 @@ class Assigment : public Statement
 {
 public:
 
-    Assigment(str variable, std::shared_ptr<Expression> expression)
+    Assigment(str variable, Expression* expression)
     {
         this->variable = variable;
         this->expression = std::move(expression);
@@ -22,10 +22,10 @@ public:
 
     void execute() override
     {
-        Variable().set(variable, expression->eval().get());
+        Variable().set(variable, expression->eval());
     }
 
 private:
     str variable;
-    std::shared_ptr<Expression> expression;
-};
+    Expression* expression;
+}; 

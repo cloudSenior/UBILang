@@ -12,10 +12,10 @@ public:
 
     NumberExpression(double value);
 
-    std::shared_ptr<Value> eval() override;
+    Value* eval() override;
 
 
 private:
     double value;
 
-};
+}; 

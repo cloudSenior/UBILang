@@ -21,27 +21,27 @@ public:
 
     Parser(vec<Token> tokens);
 
-    vec<std::shared_ptr<Statement>> parse();
+    vec<Statement*> parse();
 
 private:
     vec<Token> tokens;
     uint32 pos, size;
     Token EndOfFile = Token(TokenType::EXITSOPENFILE, "");
 
-    std::shared_ptr<Statement> statement();
+    Statement* statement();
 
-    std::shared_ptr<Statement> assigmentStatement();
+    Statement* assigmentStatement();
 
-    std::shared_ptr<Expression> expression();
+    Expression* expression();
 
-    std::shared_ptr<Expression> addtive();
+    Expression* addtive();
 
-    std::shared_ptr<Expression> multi();
+    Expression* multi();
 
-    std::shared_ptr<Expression> unary();
+    Expression* unary();
 
-    std::shared_ptr<Expression> primary();
-
+    Expression* primary();
+     
     Token consume(TokenType type);
 
     bool match(TokenType type);

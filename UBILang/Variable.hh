@@ -26,7 +26,7 @@ public:
         return false;
     }
 
-    Value* get(str key)
+    Value*get(str key)
     {
         if (!isExists(key)) 
         {
@@ -40,7 +40,7 @@ public:
         return nullptr;
     }
 
-    void set(str name, Value* value)
+    void set(str name, Value*value) 
     {
         variables[name] = value;
     }

@@ -19,5 +19,5 @@ public:
 private:
 
     TokenType type;
-    str text;
+    str text; 
 };

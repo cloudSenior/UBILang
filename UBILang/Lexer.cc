@@ -67,7 +67,7 @@ void Lexer::tokenizeWord()
 
 void Lexer::tokenizeNumber()
 {
-    str buffer;
+    str buffer; 
     char current = peek(0);
 
     while (true) {

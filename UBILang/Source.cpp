@@ -19,12 +19,12 @@ int main(int argc, char const* argv[])
         Lexer lexer(code);
 
         vec<Token> tokens = lexer.tokenize();
-        vec<shared_ptr<Statement>> expressions = move(Parser(tokens).parse());
+        auto expressions = move(Parser(tokens).parse());
 
         for (auto& item: expressions)
             item->execute();
     }
 
-    file.close();
+    file.close(); 
     return EXIT_SUCCESS;
 }

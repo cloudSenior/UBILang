@@ -16,7 +16,7 @@ public:
         try 
         {
             return std::stod(value.c_str());
-        } 
+        }  
         catch (const std::exception& err) 
         { 
             return NULL;

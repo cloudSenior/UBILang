@@ -18,7 +18,7 @@ str Token::getText()
 }
 
 void Token::setText(str text)
-{
+{ 
     this->text = text;
 }
 

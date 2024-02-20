@@ -18,7 +18,7 @@ public:
     str asString() override
     {
         return std::to_string(value);
-    }
+    } 
 
 private:
     double value;

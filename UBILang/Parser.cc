@@ -12,10 +12,10 @@ Parser::Parser(vec<Token> tokens)
     this->size = tokens.size();
     this->pos = 0;
 }
-
-vec<std::shared_ptr<Statement>> Parser::parse()
+ 
+vec<Statement*> Parser::parse()
 {
-    vec<std::shared_ptr<Statement>> result {};
+    vec<Statement*> result {};
 
     while (!match(TokenType::EXITSOPENFILE)) {
         result.push_back(std::move(statement()));
@@ -24,12 +24,12 @@ vec<std::shared_ptr<Statement>> Parser::parse()
     return result;
 }
 
-std::shared_ptr<Statement> Parser::statement()
+Statement* Parser::statement()
 {
     if (match(TokenType::PRINT))
     {
         auto copy = std::move(expression());
-        return std::make_shared<PrintStatment>(copy);
+        return new PrintStatment(copy);
     } 
     else 
     {
@@ -37,7 +37,7 @@ std::shared_ptr<Statement> Parser::statement()
     }
 }
 
-std::shared_ptr<Statement> Parser::assigmentStatement()
+Statement* Parser::assigmentStatement()
 {
     Token current = get(0);
 
@@ -46,26 +46,26 @@ std::shared_ptr<Statement> Parser::assigmentStatement()
         str variable = current.getText();
         consume(TokenType::EQ);
         auto copy = std::move(expression());
-        return std::make_shared<Assigment>(variable, copy);
+        return new Assigment(variable, copy);
     }
 
 }
 
-std::shared_ptr<Expression> Parser::expression()
+Expression* Parser::expression()
 {
     return addtive();
 }
 
-std::shared_ptr<Expression> Parser::addtive()
+Expression* Parser::addtive()
 {
-    std::shared_ptr<Expression> Multi = std::move(multi());
+    Expression* Multi = std::move(multi());
     while (true) {
         if (match(TokenType::MINUS)) {
-            Multi = std::make_shared<BinaryExpression>('-', std::move(Multi), multi());
+            Multi = new BinaryExpression('-', std::move(Multi), multi());
             continue;
         }
         if (match(TokenType::PLUS)) {
-            Multi = std::make_shared<BinaryExpression>('+', std::move(Multi), multi());
+            Multi = new BinaryExpression('+', std::move(Multi), multi());
             continue;
         }
         break;
@@ -74,18 +74,18 @@ std::shared_ptr<Expression> Parser::addtive()
     return Multi;
 }
 
-std::shared_ptr<Expression> Parser::multi()
+Expression* Parser::multi()
 {
-    std::shared_ptr<Expression> Unary = std::move(unary());
+    Expression* Unary = std::move(unary());
 
     while (true) {
         if (match(TokenType::MULTI)) {
-            Unary = std::make_shared<BinaryExpression>('*', std::move(Unary), unary());
+            Unary = new BinaryExpression('*', std::move(Unary), unary());
 
             continue;
         }
         if (match(TokenType::DELITE)) {
-            Unary = std::make_shared<BinaryExpression>('/', std::move(Unary), unary());
+            Unary = new BinaryExpression('/', std::move(Unary), unary());
 
             continue;
         }
@@ -95,11 +95,11 @@ std::shared_ptr<Expression> Parser::multi()
     return Unary;
 }
 
-std::shared_ptr<Expression> Parser::unary()
+Expression* Parser::unary()
 {
     if (match(TokenType::MINUS)) {
 
-        return std::make_shared<UnaryExpression>('-', primary());
+        return new UnaryExpression('-', primary());
     }
     if (match(TokenType::PLUS)) {
         return primary();
@@ -108,27 +108,27 @@ std::shared_ptr<Expression> Parser::unary()
     return primary();
 }
 
-std::shared_ptr<Expression> Parser::primary()
+Expression* Parser::primary()
 {
     Token current = get(0);
 
     if (match(TokenType::NUMBER)) {
-        return std::make_shared<NumberExpression>(std::stod(current.getText()));
+        return new NumberExpression(std::stod(current.getText()));
     }
 
     if (match(TokenType::LPAREN)) {
-        std::shared_ptr<Expression> result = std::move(expression());
+        Expression* result = std::move(expression());
         match(TokenType::RPAREN);
         return result;
     }
 
     if (match(TokenType::WORD))
     {
-        return std::make_shared<VariableExpression>(current.getText());
+        return new VariableExpression(current.getText());
     }
 
     if (match(TokenType::HEX_NUMBER)) {
-        return std::make_shared<NumberExpression>(std::stol(current.getText()));
+        return new NumberExpression(std::stol(current.getText()));
     }
 }
 

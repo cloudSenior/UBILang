@@ -14,14 +14,14 @@ public:
         this->name = name;
     }
 
-    std::shared_ptr<Value> eval() override
+    Value* eval() override
     {
         if (Variable().isExists(name)) 
         {
-            return std::shared_ptr<Value>(Variable().get(name));
+            return Variable().get(name);
         } 
         else 
-        {
+        { 
             throw "No registation variable";
         }
     }

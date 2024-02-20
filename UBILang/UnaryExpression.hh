@@ -12,22 +12,22 @@ class UnaryExpression : public Expression
 {
 public:
 
-    UnaryExpression(char operation, std::shared_ptr<Expression> expr);
+    UnaryExpression(char operation, Expression* expr);
 
-    std::shared_ptr<Value> eval() override
+    Value* eval() override
     {
         switch (operation) {
 
         case '-':
-            return std::make_shared<NumberValue>(-expr->eval()->asDouble());
+            return new NumberValue(-expr->eval()->asDouble());
 
         case '+':
         default:
-            return std::make_shared<NumberValue>(expr->eval()->asDouble());
+            return new NumberValue(expr->eval()->asDouble());
         }
     }
-
+     
 private:
-    std::shared_ptr<Expression> expr;
+    Expression* expr;
     char operation;
 };

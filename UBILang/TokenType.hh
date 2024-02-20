@@ -19,4 +19,4 @@ enum class TokenType {
     PRINT,
 
     EXITSOPENFILE
-};
+}; 

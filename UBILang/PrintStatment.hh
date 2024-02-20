@@ -9,7 +9,7 @@
 class PrintStatment : public Statement
 {
 public:
-    PrintStatment(std::shared_ptr<Expression> expression)
+    PrintStatment(Expression* expression)
     {
         this->expr = std::move(expression);
     }
@@ -18,10 +18,10 @@ public:
     {
         if (expr != nullptr) 
         {
-            std::cout << (expr.get())->eval()->asString();
+            std::cout << expr->eval()->asString();
         }
     }
 
 private:
-    std::shared_ptr<Expression> expr;
-};
+    Expression* expr;
+}; 

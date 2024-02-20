@@ -3,7 +3,7 @@
 #include "BinaryExpression.hh"
 #include "NumberValue.hh"
 
-BinaryExpression::BinaryExpression(char operation, std::shared_ptr<Expression> expr1, std::shared_ptr<Expression> expr2)
+BinaryExpression::BinaryExpression(char operation, Expression* expr1, Expression* expr2)
 {
     this->expr1 = std::move(expr1);
 
@@ -11,24 +11,24 @@ BinaryExpression::BinaryExpression(char operation, std::shared_ptr<Expression> e
 
     this->operation = operation;
 }
-
-std::shared_ptr<Value> BinaryExpression::eval()
+ 
+Value* BinaryExpression::eval()
 {
     switch (operation) {
 
     case '+':
-        return std::make_shared<NumberValue>(expr1->eval()->asDouble() + expr2->eval()->asDouble());
+        return new NumberValue(expr1->eval()->asDouble() + expr2->eval()->asDouble());
 
     case '-':
-        return std::make_shared<NumberValue>(expr1->eval()->asDouble() - expr2->eval()->asDouble());
+        return new NumberValue(expr1->eval()->asDouble() - expr2->eval()->asDouble());
 
     case '/':
-        return std::make_shared<NumberValue>(expr1->eval()->asDouble() / expr2->eval()->asDouble());
+        return new NumberValue(expr1->eval()->asDouble() / expr2->eval()->asDouble());
 
     case '*':
-        return std::make_shared<NumberValue>(expr1->eval()->asDouble() * expr2->eval()->asDouble());
+        return new NumberValue(expr1->eval()->asDouble() * expr2->eval()->asDouble());
 
     default:
-        return std::make_shared<NumberValue>(expr1->eval()->asDouble() + expr2->eval()->asDouble());
+        return new NumberValue(expr1->eval()->asDouble() + expr2->eval()->asDouble());
     }
 }

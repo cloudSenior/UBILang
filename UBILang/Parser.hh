@@ -6,13 +6,18 @@
 #include "Token.hh"
 
 #include "Expression.hh"
-#include "NumberExpression.hh"
+#include "ValueExpression.hh"
 #include "BinaryExpression.hh"
 #include "UnaryExpression.hh"
 #include "VariableExpression.hh"
 
-#include "Assigment.hpp"
 #include "Statement.hh"
+#include "PrintStatment.hh"
+#include "IfStatement.hh"
+
+#include "ConditionExpression.hh"
+
+#include "Assigment.hpp"
 
 
 class Parser
@@ -32,6 +37,9 @@ private:
 
     Statement* assigmentStatement();
 
+    Statement* ifElse();
+
+
     Expression* expression();
 
     Expression* addtive();
@@ -39,6 +47,8 @@ private:
     Expression* multi();
 
     Expression* unary();
+
+    Expression* conditional();
 
     Expression* primary();
      

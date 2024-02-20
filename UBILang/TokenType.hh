@@ -8,15 +8,20 @@ enum class TokenType {
     MULTI,
     DELITE,
 
+
     LPAREN, // (
     RPAREN, // )
 
     
     WORD,
+    TEXT,
     EQ,
-
+    LT, // <
+    GL, // >
     //keywords
     PRINT,
+    IF,
+    ELSE,
 
     EXITSOPENFILE
 }; 

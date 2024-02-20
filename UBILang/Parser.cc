@@ -2,8 +2,7 @@
 
 
 #include "Parser.hh"
-#include "Statement.hh"
-#include "PrintStatment.hh"
+
 
 
 Parser::Parser(vec<Token> tokens)
@@ -31,10 +30,13 @@ Statement* Parser::statement()
         auto copy = std::move(expression());
         return new PrintStatment(copy);
     } 
-    else 
+
+    if (match(TokenType::IF))
     {
-        return assigmentStatement();
+        return ifElse();
     }
+    
+    return assigmentStatement();
 }
 
 Statement* Parser::assigmentStatement()
@@ -51,9 +53,43 @@ Statement* Parser::assigmentStatement()
 
 }
 
+Statement* Parser::ifElse()
+{
+    Expression* condition = expression();
+    Statement* ifStatment = statement();
+    Statement* elseStatment;
+
+    elseStatment = match(TokenType::ELSE) ? statement() : nullptr;
+
+    return new IfStatement(std::move(condition), std::move(ifStatment), std::move(elseStatment));
+}
+
 Expression* Parser::expression()
 {
-    return addtive();
+    return conditional();
+}
+
+Expression* Parser::conditional()
+{
+    Expression* Add = std::move(addtive());
+    while (true) {
+        if (match(TokenType::EQ)) {
+            Add = new ConditionalExpression('=', std::move(Add), addtive());
+            continue;
+        }
+        if (match(TokenType::LT)) {
+            Add = new ConditionalExpression('<', std::move(Add), addtive());
+            continue;
+        }
+        if (match(TokenType::GL)) {
+            Add = new ConditionalExpression('>', std::move(Add), addtive());
+            continue;
+        }
+
+        break;
+    }
+
+    return Add;
 }
 
 Expression* Parser::addtive()
@@ -113,7 +149,7 @@ Expression* Parser::primary()
     Token current = get(0);
 
     if (match(TokenType::NUMBER)) {
-        return new NumberExpression(std::stod(current.getText()));
+        return new ValueExpression(std::stod(current.getText()));
     }
 
     if (match(TokenType::LPAREN)) {
@@ -122,13 +158,18 @@ Expression* Parser::primary()
         return result;
     }
 
+    if (match(TokenType::TEXT))
+    {
+        return new ValueExpression(current.getText());
+    }
+
     if (match(TokenType::WORD))
     {
         return new VariableExpression(current.getText());
     }
 
     if (match(TokenType::HEX_NUMBER)) {
-        return new NumberExpression(std::stol(current.getText()));
+        return new ValueExpression(std::stol(current.getText()));
     }
 }
 

@@ -27,6 +27,9 @@ vec<Token> Lexer::tokenize()
         else if (current == '#')
         {
             tokenizeHexNumber();
+        } 
+        else if (current == '"') {
+            tokenizeText();
         }
         else if (OPERATION_CHARS.find(current) != -1)
         {
@@ -56,13 +59,68 @@ void Lexer::tokenizeWord()
         current = next();
     }
 
-    if (buffer == "log") 
+    if (buffer == "clog") 
     {
         addToken(TokenType::PRINT);
-    } else 
+    }
+    else if (buffer == "if")
+    {
+        addToken(TokenType::IF);
+    } 
+    else if (buffer == "else") 
+    {
+        addToken(TokenType::ELSE);
+    }
     {
         addToken(TokenType::WORD, buffer);
     }
+}
+
+void Lexer::tokenizeText()
+{
+    next(); 
+    str buffer;
+    char current = peek(0);
+
+    while (true) {
+
+        if (current == '\\')
+        {
+            current = next();
+            switch (current) 
+            {
+            case '"':
+                current = next();
+                buffer.append("\"");
+                continue;
+
+             case 'n':
+                current = next();
+                buffer.append("\n");
+                continue;
+
+             case 't':
+                current = next();
+                buffer.append("\t");
+                continue;
+            }
+
+            buffer += "\\";
+            continue;
+        }
+
+        if (current == '"') 
+        {
+            break;
+        }
+
+        buffer += current;
+        current = next();
+    }
+
+    next();
+
+    addToken(TokenType::TEXT, buffer);
 }
 
 void Lexer::tokenizeNumber()
@@ -127,6 +185,14 @@ void Lexer::tokenizeOperator()
     case '=':
         result = TokenType::EQ;
         break;
+
+    case '<':
+    result = TokenType::LT;
+    break;
+
+    case '>':
+    result = TokenType::GL;
+    break;
     }
 
     addToken(result);

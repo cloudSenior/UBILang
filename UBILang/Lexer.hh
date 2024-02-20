@@ -21,6 +21,8 @@ private:
 
     void tokenizeHexNumber();
 
+    void tokenizeText();
+
     void tokenizeWord();
 
     void tokenizeOperator();

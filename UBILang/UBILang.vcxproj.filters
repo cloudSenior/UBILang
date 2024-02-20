@@ -31,9 +31,6 @@
     <Filter Include="Файлы заголовков\interpreter\expression">
       <UniqueIdentifier>{b3521899-5c08-4c35-829c-1736adc1e0de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\interpreter\expression\number">
-      <UniqueIdentifier>{9db252c4-e482-440a-add4-5d2d514c572e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Файлы заголовков\interpreter\expression\binary">
       <UniqueIdentifier>{665fb324-483a-4389-8168-358314886ad3}</UniqueIdentifier>
     </Filter>
@@ -64,6 +61,15 @@
     <Filter Include="Файлы заголовков\variable\types\string">
       <UniqueIdentifier>{5f646308-c730-460f-8aca-34cfb182e823}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\interpreter\expression\value">
+      <UniqueIdentifier>{9db252c4-e482-440a-add4-5d2d514c572e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\interpreter\expression\conditional">
+      <UniqueIdentifier>{f07160ed-2959-41f2-8507-b8c5a6afafbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\interpreter\statement\ifstatement">
+      <UniqueIdentifier>{bc51ca10-5b4f-45b3-b469-fb8dad9186a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -75,8 +81,8 @@
     <ClCompile Include="Token.cc">
       <Filter>Файлы заголовков\interpreter\token</Filter>
     </ClCompile>
-    <ClCompile Include="NumberExpression.cc">
-      <Filter>Файлы заголовков\interpreter\expression\number</Filter>
+    <ClCompile Include="ValueExpression.cc">
+      <Filter>Файлы заголовков\interpreter\expression\value</Filter>
     </ClCompile>
     <ClCompile Include="BinaryExpression.cc">
       <Filter>Файлы заголовков\interpreter\expression\binary</Filter>
@@ -86,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="Parser.cc">
       <Filter>Файлы заголовков\interpreter\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="ConditionExpression.cc">
+      <Filter>Файлы заголовков\interpreter\expression\conditional</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,8 +122,8 @@
     <ClInclude Include="Parser.hh">
       <Filter>Файлы заголовков\interpreter\parser</Filter>
     </ClInclude>
-    <ClInclude Include="NumberExpression.hh">
-      <Filter>Файлы заголовков\interpreter\expression\number</Filter>
+    <ClInclude Include="ValueExpression.hh">
+      <Filter>Файлы заголовков\interpreter\expression\value</Filter>
     </ClInclude>
     <ClInclude Include="BinaryExpression.hh">
       <Filter>Файлы заголовков\interpreter\expression\binary</Filter>
@@ -148,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="Value.hh">
       <Filter>Файлы заголовков\variable\types</Filter>
+    </ClInclude>
+    <ClInclude Include="ConditionExpression.hh">
+      <Filter>Файлы заголовков\interpreter\expression\conditional</Filter>
+    </ClInclude>
+    <ClInclude Include="IfStatement.hh">
+      <Filter>Файлы заголовков\interpreter\statement\ifstatement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

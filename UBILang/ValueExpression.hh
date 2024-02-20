@@ -6,16 +6,17 @@
 #include <memory>
 
 
-class NumberExpression : public Expression
+class ValueExpression : public Expression
 {
 public:
 
-    NumberExpression(double value);
+    ValueExpression(double value);
+    ValueExpression(str value);
 
     Value* eval() override;
 
 
 private:
-    double value;
+    Value* value;
 
 }; 

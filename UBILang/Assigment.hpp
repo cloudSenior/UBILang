@@ -14,16 +14,9 @@ class Assigment : public Statement
 {
 public:
 
-    Assigment(str variable, Expression* expression)
-    {
-        this->variable = variable;
-        this->expression = std::move(expression);
-    }
+    Assigment(str variable, Expression* expression);
 
-    void execute() override
-    {
-        Variable().set(variable, expression->eval());
-    }
+    void execute() override;
 
 private:
     str variable;

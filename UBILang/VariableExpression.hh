@@ -9,22 +9,9 @@
 class VariableExpression : public Expression {
 public:
 
-    VariableExpression(str name)
-    {
-        this->name = name;
-    }
+    VariableExpression(str name);
 
-    Value* eval() override
-    {
-        if (Variable().isExists(name)) 
-        {
-            return Variable().get(name);
-        } 
-        else 
-        { 
-            throw "No registation variable";
-        }
-    }
+    Value* eval() override;
 
 private:
     str name;

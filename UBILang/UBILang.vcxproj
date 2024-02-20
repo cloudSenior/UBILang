@@ -130,14 +130,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assigment.cc" />
     <ClCompile Include="BinaryExpression.cc" />
     <ClCompile Include="ConditionExpression.cc" />
+    <ClCompile Include="IfStatement.cc" />
     <ClCompile Include="Lexer.cc" />
+    <ClCompile Include="NumberValue.cc" />
+    <ClCompile Include="StringValue.cc" />
+    <ClCompile Include="PrintStatment.cc" />
     <ClCompile Include="ValueExpression.cc" />
     <ClCompile Include="Parser.cc" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Token.cc" />
     <ClCompile Include="UnaryExpression.cc" />
+    <ClCompile Include="Variable.cc" />
+    <ClCompile Include="VariableExpression.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assigment.hpp" />

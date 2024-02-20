@@ -6,28 +6,11 @@ class StringValue : public Value {
 
 public:
 
-    StringValue(str value)
-    {
-        this->value = value;
-    }
+    StringValue(str value);
 
-    double asDouble() override
-    {
-        try 
-        {
-            return std::stod(value.c_str());
-        }  
-        catch (const std::exception& err) 
-        { 
-            return NULL;
-        }
-        
-    }
+    double asDouble() override;
 
-    str asString() override
-    {
-        return value;
-    }
+    str asString() override;
 
 private:
     str value;

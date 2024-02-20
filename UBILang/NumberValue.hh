@@ -5,20 +5,11 @@
 class NumberValue : public Value
 {
 public:
-    NumberValue(double value)
-    {
-        this->value = value;
-    }
+    NumberValue(double value);
 
-    double asDouble() override 
-    {
-        return value;
-    }
-
-    str asString() override
-    {
-        return std::to_string(value);
-    } 
+    double asDouble() override;
+    
+    str asString() override;
 
 private:
     double value;

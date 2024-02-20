@@ -18,30 +18,9 @@ static std::map<str, Value*> variables {
 
 class Variable {
 public:
-    bool isExists(str key)
-    {
-        for (auto iter = variables.begin(); iter != variables.end(); ++iter)
-            if (iter->first != key)
-                return true;
-        return false;
-    }
+    bool isExists(str key);
 
-    Value*get(str key)
-    {
-        if (!isExists(key)) 
-        {
-            throw "Variable not on regidit";
-        }
-        else
-        {
-            return variables.at(key);
-        }
+    Value* get(str key);
 
-        return nullptr;
-    }
-
-    void set(str name, Value*value) 
-    {
-        variables[name] = value;
-    }
+    void set(str name, Value* value);
 };

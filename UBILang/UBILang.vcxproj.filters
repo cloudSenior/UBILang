@@ -70,6 +70,9 @@
     <Filter Include="Файлы заголовков\interpreter\statement\ifstatement">
       <UniqueIdentifier>{bc51ca10-5b4f-45b3-b469-fb8dad9186a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\interpreter\token\Token">
+      <UniqueIdentifier>{351ca2c9-00b6-4ed4-a5a6-f3b82f350a85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -77,9 +80,6 @@
     </ClCompile>
     <ClCompile Include="Lexer.cc">
       <Filter>Файлы заголовков\interpreter\lexer</Filter>
-    </ClCompile>
-    <ClCompile Include="Token.cc">
-      <Filter>Файлы заголовков\interpreter\token</Filter>
     </ClCompile>
     <ClCompile Include="ValueExpression.cc">
       <Filter>Файлы заголовков\interpreter\expression\value</Filter>
@@ -96,13 +96,34 @@
     <ClCompile Include="ConditionExpression.cc">
       <Filter>Файлы заголовков\interpreter\expression\conditional</Filter>
     </ClCompile>
+    <ClCompile Include="Assigment.cc">
+      <Filter>Файлы заголовков\interpreter\statement\assigment</Filter>
+    </ClCompile>
+    <ClCompile Include="IfStatement.cc">
+      <Filter>Файлы заголовков\interpreter\statement\ifstatement</Filter>
+    </ClCompile>
+    <ClCompile Include="PrintStatment.cc">
+      <Filter>Файлы заголовков\interpreter\statement\print</Filter>
+    </ClCompile>
+    <ClCompile Include="Token.cc">
+      <Filter>Файлы заголовков\interpreter\token\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="Variable.cc">
+      <Filter>Файлы заголовков\variable</Filter>
+    </ClCompile>
+    <ClCompile Include="VariableExpression.cc">
+      <Filter>Файлы заголовков\variable</Filter>
+    </ClCompile>
+    <ClCompile Include="StringValue.cc">
+      <Filter>Файлы заголовков\variable\types\string</Filter>
+    </ClCompile>
+    <ClCompile Include="NumberValue.cc">
+      <Filter>Файлы заголовков\variable\types\number</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lexer.hh">
       <Filter>Файлы заголовков\interpreter\lexer</Filter>
-    </ClInclude>
-    <ClInclude Include="Token.hh">
-      <Filter>Файлы заголовков\interpreter\token</Filter>
     </ClInclude>
     <ClInclude Include="table.hh">
       <Filter>Файлы заголовков\util</Filter>
@@ -163,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="IfStatement.hh">
       <Filter>Файлы заголовков\interpreter\statement\ifstatement</Filter>
+    </ClInclude>
+    <ClInclude Include="Token.hh">
+      <Filter>Файлы заголовков\interpreter\token\Token</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
